@@ -1,11 +1,14 @@
 
 # Sistema de renta de vehiculos 
 print("\nBienvenido a la renta de Autos!")
+queDia = ""
 class carRental: 
       def __init__(self):
          self.lista = []
-      
+         self.costos = []     
       def ejecutar(self):    
+       global queDia
+       queDia = input("Que día es hoy?: ")
        ingreso = True  
        while(ingreso):   
               print("\nQue desea hacer?")
@@ -37,17 +40,41 @@ class carRental:
                          self.cuit = int(input("Introduzca el CUIT: ")) 
                          self.dias = int(input("Introduzca los dias a alquilar el vehiculo: "))
                          self.lista.append(self.cuit)  
-                         self.lista.append(self.dias)  
+                         self.lista.append(self.dias)
+                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == 26:
+                            self.costos.append((self.dias * 2000) - ((5 * (self.dias * 2000) / 100)) - 50)
+                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != 26:
+                            self.costos.append((self.dias * 2000) - 50)
+                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == 26:
+                            self.costos.append((self.dias * 2000) - (5 * (self.dias * 2000) / 100))
+                         else:
+                            self.costos.append(self.dias * 2000)                       
                       elif (opc == 2):
                          self.cuit = int(input("Introduzca el CUIT: ")) 
                          self.horas = int(input("Introduzca las horas a alquilar el vehiculo: ")) 
                          self.lista.append(self.cuit)  
-                         self.lista.append(self.horas)  
+                         self.lista.append(self.horas)
+                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == 26:
+                            self.costos.append((self.horas * 100) - ((5 * (self.horas * 100) / 100)) - 50)
+                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != 26:
+                            self.costos.append((self.horas * 100) - 50)
+                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == 26:
+                            self.costos.append((self.horas * 100) - (5 * (self.horas * 100) / 100))
+                         else:
+                            self.costos.append(self.horas * 100) 
                       elif (opc == 3):
                          self.cuit = int(input("Introduzca el CUIT: ")) 
                          self.km = int(input("Introduzca los km que va a recorrer con el vehiculo: ")) 
                          self.lista.append(self.cuit)  
                          self.lista.append(self.km)  
+                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == 26:
+                            self.costos.append((self.km * 10 + 100) - ((5 * (self.km * 10 + 100) / 100)) - 50)
+                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != 26:
+                            self.costos.append((self.km * 10 + 100) - 50)
+                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == 26:
+                            self.costos.append((self.km * 10 + 100) - (5 * (self.km * 10 + 100) / 100))
+                         else:
+                            self.costos.append(self.km * 10 + 100)
                  except ValueError:
                      print("ERROR!, ingrese solo numeros!")   
 # Metodo para mostrar autos alquilados en lista 
@@ -91,12 +118,11 @@ class carRental:
 # Confirmar seleccion 
       def confirmarAlquiler(self):
               print("Su alquiler se ha confirmado exitosamente")
+              print(f"el costo de este alquiler es de: ${self.costos[0]}")
               exit()                     
 
 renta = carRental()
 renta.ejecutar()
-
-
 
 
 
