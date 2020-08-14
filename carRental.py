@@ -1,5 +1,5 @@
 
-# Sistema de renta de vehiculos 
+# Sistema de gestion de renta de vehiculos Informatorio 2020 Grupo 6 --------------------------------------------------------------------------------------------------------------------------------------
 
 class carRental: 
 
@@ -8,6 +8,9 @@ class carRental:
          self.rojo = '\33[31m'
          self.amarillo = '\33[33m'
          self.reset = '\u001b[0m' 
+         self.km = ""
+         self.horas = ""
+         self.dias = ""
          self.lista = []
 
       def ejecutar(self):    
@@ -42,20 +45,26 @@ class carRental:
                       print("\nIngrese 1 para alquilar por dia, 2 por hora y 3 por km")
                       opc = int(input("Quiere alquilar por dia , por hora o km ? ")) 
                       if (opc == 1):
-                         self.cuit = int(input("Introduzca el CUIT: ")) 
-                         self.dias = int(input("Introduzca los dias a alquilar el vehiculo: "))
-                         self.lista.append(str(self.cuit)+ " CUIT")  
-                         self.lista.append(str(self.dias)+ " dias")  
+                         self.cuit = input("Introduzca el CUIT: ")
+                         self.dias = input("Introduzca los dias a alquilar el vehiculo: ")
+                         self.dias = (self.cuit+" "+self.dias +" dias")
+                         self.lista.append(self.cuit)  
+                         self.lista.append(self.dias) 
+                         print(self.verde+"\nAlquiler añadido exitosamente"+self.reset) 
                       elif (opc == 2):
-                         self.cuit = int(input("Introduzca el CUIT: ")) 
-                         self.horas = int(input("Introduzca las horas a alquilar el vehiculo: ")) 
-                         self.lista.append(str(self.cuit)+ " CUIT")  
-                         self.lista.append(str(self.horas) + " horas")  
+                         self.cuit = input("Introduzca el CUIT: ")
+                         self.horas = input("Introduzca las horas a alquilar el vehiculo: ")
+                         self.horas = (self.cuit+" "+self.horas + " horas")  
+                         self.lista.append(self.cuit)  
+                         self.lista.append(self.horas) 
+                         print(self.verde+"\nAlquiler añadido exitosamente"+self.reset)  
                       elif (opc == 3):
-                         self.cuit = int(input("Introduzca el CUIT: ")) 
-                         self.km = int(input("Introduzca los km de recorrido del vehiculo: ")) 
-                         self.lista.append(str(self.cuit)+ " CUIT")  
-                         self.lista.append(str(self.km) + " kilometros")  
+                         self.cuit = input("Introduzca el CUIT: ")
+                         self.km = input("Introduzca los km de recorrido del vehiculo: ") 
+                         self.km = (self.cuit+" "+self.km + " kilometros") 
+                         self.lista.append(self.cuit)  
+                         self.lista.append(self.km) 
+                         print(self.verde+"\nAlquiler añadido exitosamente"+self.reset) 
                  except ValueError:
                      print(self.rojo+"error, ingrese solo numeros"+self.reset)   
 
@@ -72,19 +81,29 @@ class carRental:
                           print(self.amarillo+"--------------------------"+self.reset)   
 # editar seleccion                           
       def editarAutos(self):
-                print(self.lista)
-                print("\nQue alquiler de auto desea borrar ?")
-                print("EJEMPLO 123 CUIT :")
-                borrarCUIT = input("Ingrese su numero de CUIT espacio y la palabra CUIT como se muestra para borrar: ") 
+           print(self.lista)
+           print("\nQue alquiler de auto desea borrar ?")
+           borrarCUIT = input("Ingrese su numero de CUIT para borrar: ") 
+           borrarCOD = input("Ingrese 1 si alquilo por dias , 2 horas , 3 km: ")  
 
-                if (borrarCUIT in self.lista):
-                    self.lista.remove(self.cuit)       
-                    self.lista.remove(self.horas)       
-                    self.lista.remove(self.km)       
-                    self.lista.remove(self.dias)       
-                    print(self.amarillo+"\n### Alquiler borrado exitosamente ###"+self.reset)
-                if (borrarCUIT not in self.lista): 
-                    print(self.rojo+"\n||||___Datos no encontrados, ingreselos nuevamente__||||"+self.reset)   
+           
+           if (borrarCUIT in self.lista):
+                 print(self.verde+"\nEl cuit se encuentra en la lista, intente de nuevo el codigo"+self.reset)
+                 if (borrarCOD == "1" and borrarCUIT in self.dias):
+                   self.lista.remove(borrarCUIT)          
+                   self.lista.remove(self.dias)          
+                   print(self.amarillo+"\n### Alquiler borrado exitosamente ###"+self.reset)
+                 if (borrarCOD == "2" and borrarCUIT in self.horas):
+                   self.lista.remove(borrarCUIT)          
+                   self.lista.remove(self.horas)      
+                   print(self.amarillo+"\n### Alquiler borrado exitosamente ###"+self.reset)    
+                 if (borrarCOD == "3" and borrarCUIT in self.km):
+                   self.lista.remove(borrarCUIT)          
+                   self.lista.remove(self.km)          
+                   print(self.amarillo+"\n### Alquiler borrado exitosamente ###"+self.reset)
+           else: 
+               print(self.rojo+"\n||||___CUIT no encontrado, o codigo incorrecto, ingreselo nuevamente__||||"+self.reset)   
+    
                 
             
 # Confirmar seleccion 
