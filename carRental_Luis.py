@@ -1,7 +1,6 @@
-
+#codigo luis
 # Sistema de renta de vehiculos 
 print("\nBienvenido a la renta de Autos!")
-queDia = ""
 class carRental: 
       def __init__(self):
          self.lista = []
@@ -12,14 +11,14 @@ class carRental:
        ingreso = True  
        while(ingreso):   
               print("\nQue desea hacer?")
-              print("Las opciones son:\n1- Alquilar un auto \n2- Mostrar autos rentados \n3- Editar Autos \n4- Confirmar alquiler \n5- Salir del sistema")
+              print("Las opciones son:\n1- Alquilar un auto \n2- Mostrar autos rentados \n3- Editar Autos \n4- Confirmar registros/mostrar Facturación \n5- Devolver auto\n6- Salir del sistema")
               try:
                  self.opcion = int(input("\nDigite la operacion que desea realizar: ")) 
               except ValueError:
                  print("\n::::: Error, ingrese solo numeros enteros :::::")
                  continue
   
-              if (self.opcion == 5):
+              if (self.opcion == 6):
                    print("\nAdios! ha salido del sistema de renta de autos") 
                    break
               elif (self.opcion == 1):
@@ -29,7 +28,9 @@ class carRental:
               elif (self.opcion == 3):
                    self.editarAutos()     
               elif (self.opcion == 4):
-                   self.confirmarAlquiler()     
+                   self.confirmarAlquiler()
+              elif (self.opcion == 5):
+                   self.devolverAuto()
 
 # Metodo para alquilar autos                    
       def Alquilar(self):
@@ -41,12 +42,13 @@ class carRental:
                          self.dias = int(input("Introduzca los dias a alquilar el vehiculo: "))
                          self.lista.append(self.cuit)  
                          self.lista.append(self.dias)
-                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == 26:
-                            self.costos.append((self.dias * 2000) - ((5 * (self.dias * 2000) / 100)) - 50)
-                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != 26:
+                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == "26":
+                            self.costos.append((self.dias * 2000) - ((self.dias * 2000) / 20) - 50)
+                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != "26":
                             self.costos.append((self.dias * 2000) - 50)
-                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == 26:
-                            self.costos.append((self.dias * 2000) - (5 * (self.dias * 2000) / 100))
+                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == "26":
+                            self.costos.append((self.dias * 2000) - ((self.dias * 2000) / 20))
+                            print(str(self.cuit)[:2])
                          else:
                             self.costos.append(self.dias * 2000)                       
                       elif (opc == 2):
@@ -54,12 +56,12 @@ class carRental:
                          self.horas = int(input("Introduzca las horas a alquilar el vehiculo: ")) 
                          self.lista.append(self.cuit)  
                          self.lista.append(self.horas)
-                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == 26:
-                            self.costos.append((self.horas * 100) - ((5 * (self.horas * 100) / 100)) - 50)
-                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != 26:
+                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == "26":
+                            self.costos.append((self.horas * 100) - ((self.horas * 100) / 20) - 50)
+                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != "26":
                             self.costos.append((self.horas * 100) - 50)
-                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == 26:
-                            self.costos.append((self.horas * 100) - (5 * (self.horas * 100) / 100))
+                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == "26":
+                            self.costos.append((self.horas * 100) - ((self.horas * 100) / 20))
                          else:
                             self.costos.append(self.horas * 100) 
                       elif (opc == 3):
@@ -67,12 +69,12 @@ class carRental:
                          self.km = int(input("Introduzca los km que va a recorrer con el vehiculo: ")) 
                          self.lista.append(self.cuit)  
                          self.lista.append(self.km)  
-                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == 26:
-                            self.costos.append((self.km * 10 + 100) - ((5 * (self.km * 10 + 100) / 100)) - 50)
-                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != 26:
+                         if queDia.lower() == "miercoles" and str(self.cuit)[:2] == "26":
+                            self.costos.append((self.km * 10 + 100) - ((self.km * 10 + 100) / 20) - 50)
+                         elif queDia.lower() == "miercoles" and str(self.cuit)[:2] != "26":
                             self.costos.append((self.km * 10 + 100) - 50)
-                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == 26:
-                            self.costos.append((self.km * 10 + 100) - (5 * (self.km * 10 + 100) / 100))
+                         elif queDia.lower() != "miercoles" and str(self.cuit)[:2] == "26":
+                            self.costos.append((self.km * 10 + 100) - ((self.km * 10 + 100) / 20))
                          else:
                             self.costos.append(self.km * 10 + 100)
                  except ValueError:
@@ -97,7 +99,7 @@ class carRental:
                 print("\nBORRADO DE ALQUILERES!")
                 for i in self.lista:
                      if (num % 2 == 0):
-                        print("____________\nBorrar Opc:N°"+str(opc))
+                        print("________________\nBorrar Opc:N°"+str(opc))
                         print("El cuit es:" + str(self.lista[num]))
                         opc+=1
                         num+=1   
@@ -115,6 +117,20 @@ class carRental:
                         self.lista.pop(self.lista.index(borrarCUIT)+1)
                         self.lista.remove(borrarCUIT)    
                     print("\n### Alquiler borrado exitosamente ###")
+#PARA DEVOLVER AUTO ALQUILADO:                    
+      def devolverAuto(self):
+          mostrar = self.mostrarAutos()
+          print("\nQue alquiler de auto desea devoler?")
+          devolverCUIT = int(input("Ingrese el numero de CUIT para devolverlo: "))
+          devolverTime = int(input("Ingrese la cantidad de dias/horas/km que pidió en el registro: "))
+          realTime = int(input("Ingrese la cantidad de dias/horas/km reales que realizó: "))
+          if (devolverCUIT not in self.lista): 
+                    print("\n||||___Datos no encontrados, ingreselos nuevamente__||||")
+          if (devolverTime in self.lista):
+              if realTime > devolverTime:
+                  print("El usuario tiene que devolver el doble del dinero total!")
+                  print(self.costos)
+
 # Confirmar seleccion 
       def confirmarAlquiler(self):
               print("Su alquiler se ha confirmado exitosamente")
