@@ -17,7 +17,7 @@ def testConnect():
    mydb.close() 
 
 # Test de conexion a DB , imprime el objeto de la conexion y el mensaje si hay exito 
-# testConnect() 
+testConnect() 
 
 
 #-- Funcion para crear la base de datos -- 
@@ -25,7 +25,7 @@ def CreateDB():
    mydb = mysql.connector.connect(
       host="localhost",
       user="root",
-      password="password"
+      password="15256010"
     )
    cursor = mydb.cursor()
    cursor.execute("CREATE DATABASE IF NOT EXISTS testDB") 
@@ -35,7 +35,7 @@ def CreateDB():
        print(x)
    mydb.close() 
 
-# CreateDB() 
+CreateDB() 
 
 
 #-- Crear tabla de base de datos --
@@ -43,7 +43,7 @@ def CreateTable():
    mydb = mysql.connector.connect(
       host="localhost",
       user="root",
-      password="password"
+      password="15256010"
     )
    cursor = mydb.cursor()
    try:  
@@ -58,7 +58,7 @@ def CreateTable():
      print("\nHubo un error, probablemente la tabla ya existe")  
    mydb.close() 
 
-#CreateTable() 
+CreateTable() 
 
 
 #-- Insertar datos a tabla --
@@ -66,7 +66,7 @@ def insert(cuit,dias,horas,km):
    mydb = mysql.connector.connect(
       host="localhost",
       user="root",
-      password="password"
+      password="15256010"
     )
    cursor = mydb.cursor()
    try: 
@@ -82,7 +82,7 @@ def insert(cuit,dias,horas,km):
    mydb.commit()   
    mydb.close() 
 
-#insert()
+insert()
 
 
 #-- Borrar datos a tabla especificos --
@@ -90,7 +90,7 @@ def delete(cuit):
    mydb = mysql.connector.connect(
       host="localhost",
       user="root",
-      password="password"
+      password="15256010"
     )  
    cursor = mydb.cursor()
 
@@ -112,7 +112,7 @@ def delete(cuit):
    mydb.commit()   
    mydb.close() 
 
-#delete()
+delete()
 
 
 #-- Borrar datos a tabla Todos los datos--
@@ -120,7 +120,7 @@ def deleteALL():
    mydb = mysql.connector.connect(
       host="localhost",
       user="root",
-      password="password"
+      password="15256010"
     )
    cursor = mydb.cursor()
    try: 
@@ -134,7 +134,7 @@ def deleteALL():
    mydb.commit()   
    mydb.close() 
 
-#deleteALL()
+deleteALL()
 
 
 
@@ -143,7 +143,7 @@ def update(cuit):
    mydb = mysql.connector.connect(
       host="localhost",
       user="root",
-      password="password"
+      password="15256010"
     )
    cursor = mydb.cursor()
 
@@ -166,7 +166,7 @@ def update(cuit):
    mydb.commit()   
    mydb.close() 
 
-#update()
+update()
 
 
 #-- Obtener datos de la tabla especificos por cuit todos los datos -- 
@@ -174,7 +174,7 @@ def select(cuit):
    mydb = mysql.connector.connect(
       host="localhost",
       user="root",
-      password="password"
+      password="15256010"
     )
    cursor = mydb.cursor()
    
@@ -207,7 +207,7 @@ def select(cuit):
    mydb.commit()   
    mydb.close()
 
-#select()
+select()
 
 
 
@@ -216,7 +216,7 @@ def selectALL():
    mydb = mysql.connector.connect(
       host="localhost",
       user="root",
-      password="password"
+      password="15256010"
     )
    cursor = mydb.cursor()
    
@@ -240,7 +240,7 @@ def selectALL():
    mydb.commit()   
    mydb.close()
 
-#selectALL()
+selectALL()
 
 
 
